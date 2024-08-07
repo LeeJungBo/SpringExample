@@ -1,4 +1,4 @@
-plugins {
+plugins {//gradle은 라이브러리를 쉽게 쓸수있게 도와주는 거
 	id 'java'
 	id 'org.springframework.boot' version '3.2.8'
 	id 'io.spring.dependency-management' version '1.1.6'
@@ -23,12 +23,14 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
+dependencies {//이 라이브러리에 의존해있다는 의미 추가필요한거있으면  검색 통해 추가
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
