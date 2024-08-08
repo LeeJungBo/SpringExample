@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 이거 파일이름 Mapper.xml 을 붙인이유는 application머시기에다가 내가 그렇게 써준다고 복사, 붙여넣기 했음 -->
+<!-- xml자체는 규격이 없지만 우리가 원하는 목적에 맞게 우리가 정의 가능 
+	 dtd : xml에서 사용될 태그를 정의한 문서-->
+<!-- mybatis dtd -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 지금 dtd가 적용되었기 때문에 아무태그나 해선 안된다. (dtd규격에 맞게만가능)
+  selectUsedGoodsList();이거를 여기다가 정의(왜? 저건 인터페이스여서 저기서 직접 구현을 할수 없어서 xml을 통해 구현 -->
+ 
+
+<mapper namespace="com.jung.spring.ex.database.repository.UsedGoodsRepository">
+	
+	<!-- 구현할 메소드 이름을 select를 통해 정의 -->
+	<select id="selectUsedGoodsList" resultType="com.jung.spring.ex.database.domain.UsedGoods"><!-- 무슨 타입으로 할건지 만들어준 타입을 주소에 맞게 넣어주기 -->
+		SELECT  <!-- 번거롭지만 쿼리행의 이름을 모두 써주는건 정확히 쿼리의 이름을 확인할수 있게하기위함이다. -->
+			`id` <!-- 결국 selectUsedGoodsList 이 메소드를 단지 태크로 감싸주고 xml문법을 통해  여기서 대신 그냥 구현 시켜준것 -->
+			, `sellerId`
+			, `title`
+			, `price`
+			, `description`
+			, `image`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+		 	`used_goods`
+	</select>
+
+</mapper> 

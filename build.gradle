@@ -31,6 +31,11 @@ dependencies {//이 라이브러리에 의존해있다는 의미 추가필요한
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
+	
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'//서블릿에서 복잡하게 막 문자열로 만들어서 했던 그 과정을 손쉽게 해주는 라이브러리
+	runtimeOnly 'com.mysql:mysql-connector-j'//얘를 통해서 바로 mysql에 연결될수있게 해주는것
+	
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 }
 
 tasks.named('test') {
