@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.jung.spring.ex.mybatis.repository.ReviewRepository">
+ 
+ 	<select id="selectReview" resultType="com.jung.spring.ex.mybatis.domain.Review"
+ 	parameterType="int">
+ 		SELECT
+ 			`id`
+ 			, `storeId`
+ 			, `menu`
+ 			, `userName`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`new_review`
+ 		WHERE
+ 			`id` = #{id} <!-- @Param("id") 여기서 받아온건 여기에 있는 id -->
+ 	</select>
+ 
+ 
+ 
+ </mapper>
