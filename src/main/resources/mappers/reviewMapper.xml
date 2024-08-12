@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 여기가 mybatis의 프레임 -->
  
  <mapper namespace="com.jung.spring.ex.mybatis.repository.ReviewRepository">
  
@@ -22,6 +22,49 @@
  			`id` = #{id} <!-- @Param("id") 여기서 받아온건 여기에 있는 id -->
  	</select>
  
+ 	
+ 	<insert id="insertReview" parameterType="map"> <!-- resultType : insert에서는 int값으로 정해져있기때문에 (위에 메소드가 int) resultType 생략  -->
+ 		INSERT										<!-- parameterType="map" 이 map인 이유는 전달받는게 int, String 막 섞여있어서 -->
+ 			`new_review`
+ 		(
+ 			`storeId`
+ 			, `menu`
+ 			, `userName`
+ 			, `point`
+ 			, `review`
+ 		)
+ 		VALUE
+ 		(
+ 			#{storeId}
+ 			, #{menu}
+ 			, #{userName}
+ 			, #{point}
+ 			, #{review}
+ 		)
+ 	
+ 	</insert>
+ 	
+ 	<insert id="insertReviewByObject" parameterType="com.jung.spring.ex.mybatis.domain.Review"><!-- insert 리턴타입은 int로 고정되어있어서 생략 -->
+ 	
+	 	INSERT										<!-- parameterType="map" 이 map인 이유는 전달받는게 int, String 막 섞여있어서 -->
+	 			`new_review`
+	 		(
+	 			`storeId`
+	 			, `menu`
+	 			, `userName`
+	 			, `point`
+	 			, `review`
+	 		)
+	 	VALUE
+	 		(
+		 		#{storeId} <!-- 이거 위에꺼보고 한게 아니라 Review 클래스 타입을 보면서 한거임 -->
+		 		, #{menu}
+		 		, #{userName}
+		 		, #{point}
+		 		, #{review}
+	 		)
+ 	
+ 	</insert>
  
  
  </mapper>
