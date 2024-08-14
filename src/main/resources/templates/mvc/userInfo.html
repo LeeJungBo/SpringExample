@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 이걸 통해 timeleaf문법이 적용됨 -->
+<head>
+<meta charset="UTF-8">
+<title>사용자 정보</title>
+</head>
+<body>
+	
+	<!-- 중간 매개체 model을 통해서 호출되는거 -->
+	
+	<h1 th:text="${title}">정보</h1>
+	
+	
+	<table border="1">
+		<tr>
+			<td>이름</td>
+			<td th:text="${result.name}">김인규</td> <!-- 키인 result를 이용해 실제 값은 name을 통해 getter를 통해 호출 -->
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td th:text="${result.yyyymmdd}">20041201</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td th:text="${result.email}">lecture@hagulu.com</td>
+		</tr>
+	</table>
+
+
+
+
+
+</body>
+</html>
