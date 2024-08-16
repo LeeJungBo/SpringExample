@@ -23,5 +23,49 @@
  	
  	
  	</select>
+ 	
+ 	
+ 	<insert id="insertUser" parameterType="map">
+ 	
+ 	INSERT INTO
+ 		`new_user`
+ 	(
+ 		`name`
+ 		, `yyyymmdd`
+ 		, `email`
+ 		, `introduce`	
+ 	)
+ 	VALUE
+ 	(
+ 		#{name}
+ 		, #{birthday}
+ 		, #{email}
+ 		, #{introduce}
+ 	)
+ 	</insert>
+ 	
+ 	
+ 	  <insert id="insertUserByObject" parameterType="com.jung.spring.ex.mvc.domain.User"
+ 	  useGeneratedKeys="true" keyProperty="id"> <!-- controller에서의 user 객체가 수행되고(지금같은경우에는 insert) 그것을 바로 조회할수 있게 수행된값이 id -->
+ 	INSERT INTO
+ 		`new_user`
+ 	(
+ 		`name`
+ 		, `yyyymmdd`
+ 		, `email`
+ 		, `introduce`	
+ 	)
+ 	VALUE
+ 	(	
+ 		#{name}
+ 		, #{yyyymmdd}  <!-- 이건 yyyymmdd여야한다 왜냐하면 객체로 전달받는거여서 User클래스의 멤버변수들과 이름이 같아야한다 -->
+ 		, #{email}
+ 		, #{introduce}
+ 	)
+ 	</insert> 
+ 	
+ 	
+ 	
+ 	
  
 </mapper>
