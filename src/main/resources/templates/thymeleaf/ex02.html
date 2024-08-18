@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h2>반복문</h2>
+
+
+	<h1>1. 숫자 반복</h1>
+	<!-- 0 ~ 4 반복(향상된 for문과 비슷) -->
+	<div th:each="i:${#numbers.sequence(0, 4)}">
+		<span th:text="${i}"></span> <!-- 딱히 쓸게 없을때도 span을 쓴다  -->
+	</div>
+	
+	
+	
+	
+	<div th:each="fruit, status:${fruitList}"> <!-- fruit, status 이런식으로 변수를 2개 쓸수있고 앞에꺼는 하나의 변수이고 뒤에 status는 한번 해보면 알겠지만 하나의 변수의 반복상태들을 나타냄 -->
+		<span th:text="${fruit}"> </span>
+		<span th:text="|${status.index} ${status.count}|"></span>
+		<span th:text="${status}"> </span>
+	</div>
+	
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user:${userList}">
+				<td th:text="${user.name}">유재석</td> <!-- 얘는 get을 쓸 필요없음 (사용법 : 스프링이 알아서 판단)  -->
+				<td th:text="${user.age}">52</td>
+				<td th:text="${user.hobby}">진행하기</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	
+</body>
+</html>
