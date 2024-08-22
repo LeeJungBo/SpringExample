@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX 예제</title>
+</head>
+<body>
+
+	<h2>AJAX 테스트</h2>
+
+	<button type="button" id="requestBtn">요청</button>
+
+
+	<h4><span>이름 : </span><span id="nameSpan">김인규</span></h4>
+	<h4><span>나이 : </span><span id="ageSpan">20</span></h4>
+
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		
+		$(document).ready(function(){
+			
+			$("#requestBtn").on("click", function(){
+				
+				alert();
+				
+				// /ajax/person // 요건들이 요청할 메소드들을 정의해준다
+				$.ajax({
+					type:"get"
+					, url:"/ajax/person"
+					, data:{"name":"유재석", "birthday":"20030823"} //파라미터 이름들 // 이걸 제이쿼리가 객체로 변화시켜줌
+					, success:function(data){ // 요청이 성공해 reponse에서 진행될 함수 (이 data랑 위에 data랑 아무관련이 없음 그냥 변수를 쓰겠다는거) 
+						// 결국 여기에 있는 data의 의미는 ajax안에서 어떤 데이터들이 만들어지고 이것을 결국에 인자로 만들어서 파라미터로 넣어주겠다는거고 그것을 표현해준것에 불과하다
+						// {"name" : "김인규", "age":24} response는 어쨋든 문자열임(반드시 명심!!!!!) (전달받는걸 데이터일지라도) 다만 제이쿼리는 그냥 제이슨이라는 걸 인식해서 이것을 단지 문자열을 객체로 변화시키는것일뿐임
+						// jquery가 response 담긴 json 문자열을 객체로 변환한 결과를 사용한다.
+						console.log(data.name + " " + data.age); // 제이쿼리가 이렇게 쉽게 쓰라고 변환해준것일뿐 json은 문자열이어서 제이쿼리가 없으면 이걸 그대로 우리가 쪼개고 그래야한다.
+						
+						// <h4><span>이름 : </span><span id="nameSpan">김인규</span></h4> 김인규를 "유재석"으로 바꾸어줌
+						$("#nameSpan").text(data.name);
+						$("#ageSpan").text(data.age);
+					
+					}
+					,error:function(){
+						alert("에러!!");
+					}
+					
+					
+				});
+				
+			});
+			
+			
+		});
+	</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 추가</title>
+</head>
+<body>
+	<!-- API형태여서 form태그 필요없음 -->
+	
+		<label>이름 : </label><input type="text" id="nameInput"> <br>
+		<label>생년월일 : </label><input type="text" id="birthdayInput"> <br>
+		<label>이메일 : </label><input type="text" id="emailInput"> <br>
+		<textarea rows="5" cols="50" id="introduceInput"></textarea>
+		<button type="button" id="addBtn">추가</button>
+
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function(){
+				
+				$("#addBtn").on("click", function(){
+					
+					let name = $("#nameInput").val();
+					let birthday = $("#birthdayInput").val();
+					let email = $("#emailInput").val();
+					let introduce = $("#introduceInput").val();
+					
+					// 유효성 검사 (Validation) 사용자가 입력한 값은 꼭 검증해야됨 (아무것도 입력안했는지 등)
+					if(name == ""){
+						alert("이름을 입력하세요");
+						return ; // 원하는 값들이 아니면 함수를 중단시키는거
+					}
+					
+					if(birthday == ""){
+						alert("생년월일을 입력하세요");
+						return ; // 원하는 값들이 아니면 함수를 중단시키는거
+					}
+					
+					if(email == ""){
+						alert("이메일을 입력하세요");
+						return ; // 원하는 값들이 아니면 함수를 중단시키는거
+					}
+					
+					if(introduce == ""){
+						alert("자기소개를 입력하세요");
+						return ; // 원하는 값들이 아니면 함수를 중단시키는거
+					}
+					
+					
+					
+					
+					$.ajax({
+						type:"post"
+						, url:"/ajax/user/create"
+						, data:{"name": name, "birthday":birthday, "email":email, "introduce":introduce}
+						, success:function(data){
+							// 성공, 실패
+							// {"result":"success"}
+							// {"result":"fail"}
+							if(data.result == "success"){
+								// 
+								alert("추가 성공!!")
+							}else{
+								// 실패
+								alert("추가 실패!")
+							}
+						}
+						, error:function(){
+							alert("추가 에러!!") // 실패 alert("추가 실패!") 와 에러를 구분해주는것이 좋음 그래야, 뭐가 잘못됐을때 원인을 찾기가 쉬움
+						}
+					});
+					
+				});
+				
+			});
+		</script>
+
+
+</body>
+</html>
