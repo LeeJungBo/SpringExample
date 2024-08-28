@@ -53,6 +53,22 @@ public class NewUserController {
 		return "ajax/userInput";
 	}
 	
+	// 전달받은 이메일주소가 이미 저장된 주소인지 알려주는 API
+	// email 중복확인 API
+	@GetMapping("/duplicate-email")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
+		boolean isDuplicate = userService.isDuplicateEmail(email);
+		Map<String, Boolean> resultMap = new HashMap<>();
+		// {"isDuplicate":true}
+		// {"isDuplicate":false}	이 형태의 문자열 json을 만들자
+		if(isDuplicate) {
+			resultMap.put("isDuplicate", true);
+		}else {
+			resultMap.put("isDuplicate", false);
+		}
+		return resultMap;
+	}
 	
 	
 }

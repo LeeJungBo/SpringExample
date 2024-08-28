@@ -36,6 +36,14 @@ dependencies {//이 라이브러리에 의존해있다는 의미 추가필요한
 	runtimeOnly 'com.mysql:mysql-connector-j'//얘를 통해서 바로 mysql에 연결될수있게 해주는것
 	
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+	
 }
 
 tasks.named('test') {

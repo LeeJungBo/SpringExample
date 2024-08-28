@@ -64,6 +64,14 @@
  	)
  	</insert> 
  	
+ 	<select id="selectCountByEmail" parameterType="string" resultType="int"> <!-- 갯수를 타입으로 받으니 int -->
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`new_user`
+ 		WHERE
+ 			`email`= #{email};
+ 	</select>
  	
  	
  	

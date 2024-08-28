@@ -37,5 +37,19 @@ public class UserService {
 		return count;
 	}
 	
+	// 전달 받은 email이 중복된 상태인지 알려주는 기능
+	public boolean isDuplicateEmail(
+			String email) { // 이메일이 중복됐냐 안됐냐의 true false로만 알릴수 있게
+		int count = userRepository.selectCountByEmail(email); // 불린타입이어서 결론만(리턴값) boolean에 부합하면 된다. int로 하고 if로 리턴값만 true, false값으로 
+		
+		if(count == 0) {
+			// 중복안됨
+			return false;
+		}else {
+			// 중복됨
+			return true; // 중복되었으니 true
+		}
+	}
+	
 
 }
