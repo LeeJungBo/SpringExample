@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 
 
-@Builder
+@Builder(toBuilder=true)
 @NoArgsConstructor
 //public testDto() {} 이런것도 없어도 된다
 

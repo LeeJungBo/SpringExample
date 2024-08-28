@@ -3,18 +3,20 @@ package com.jung.spring.ex.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jung.spring.ex.jpa.domain.NewName;
 import com.jung.spring.ex.jpa.service.NewNameService;
 
 @Controller
+@RequestMapping("/jpa/newName")
 public class NewNameController {
 
 	@Autowired
 	private NewNameService newNameService;
 	
-	@GetMapping("/jpa/newName/create")
+	@GetMapping("/create")
 	@ResponseBody
 	public NewName createNewName() {
 		
@@ -22,6 +24,28 @@ public class NewNameController {
 		
 		return newName;
 	}
+	
+	
+	@GetMapping("/update")
+	@ResponseBody
+	public NewName updateNewName() {
+		// id가 3인 학생정보의 장래희망을 강사로 변경
+		NewName newName = newNameService.updateNewName(3, "강사");
+		return newName;
+	}
+	
+	
+	@GetMapping("/delete")
+	@ResponseBody
+	public String deleteNewName() {
+		// id가 4인 학생정보 삭제
+		newNameService.deleteNewName(3);
+		
+		return "삭제!";
+	}
+	
+	
+	
 	
 	
 	@GetMapping("/jpa/lombok/test")
@@ -35,11 +59,11 @@ public class NewNameController {
 		
 		
 		NewName newName = NewName.builder()
-		.name("김인규")
-		.phoneNumber("010-0000-1111")
-		.dreamJob("프로그래머")
-		.email("lecture@hagulu.com")
-		.build();  // 이런식으로 객체 생성도 가능하다 (빌더 패턴을 이용해서)
+						.name("김인규")
+						.phoneNumber("010-0000-1111")
+						.dreamJob("프로그래머")
+						.email("lecture@hagulu.com")
+						.build();  // 이런식으로 객체 생성도 가능하다 (빌더 패턴을 이용해서)
 		
 		return newName; // 브라우저에 화면에 뜬다
 		
