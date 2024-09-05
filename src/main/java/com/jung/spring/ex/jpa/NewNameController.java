@@ -1,5 +1,8 @@
 package com.jung.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jung.spring.ex.jpa.domain.NewName;
+import com.jung.spring.ex.jpa.repository.NewNameRepository;
 import com.jung.spring.ex.jpa.service.NewNameService;
 
 @Controller
@@ -15,6 +19,11 @@ public class NewNameController {
 
 	@Autowired
 	private NewNameService newNameService;
+	
+	//임시로 하는거
+	// 이렇게 바로 레파지토리 갖고와서 하는거 절대 아님 단지 그냥 임시로 하는거
+	@Autowired
+	private NewNameRepository newNameRepository;
 	
 	@GetMapping("/create")
 	@ResponseBody
@@ -43,6 +52,34 @@ public class NewNameController {
 		
 		return "삭제!";
 	}
+	
+	@GetMapping("/find")
+	@ResponseBody
+	public List<NewName> findNewName(){
+		
+		// 모든행 조회
+		List<NewName> newNameList = null;
+				//newNameRepository.findAll();
+		
+//		newNameList = newNameRepository.findAllByOrderByIdDesc();
+		
+//		newNameList = newNameRepository.findTop2ByOrderByIdDesc();
+		
+//		newNameList = newNameRepository.findByName("김인규");
+		
+		List<String>nameList = new ArrayList<>();
+		nameList.add("유재석");
+		nameList.add("조세호");
+		
+//		newNameList = newNameRepository.findByNameIn(nameList);
+//		newNameList = newNameRepository.findByEmailContaining("naver");
+		newNameList = newNameRepository.findByIdBetweenOrderByIdDesc(2, 3);
+
+//		newNameList = newNameRepository.selectByDreamJob("프로그래머");
+		return newNameList;
+	}
+	
+	
 	
 	
 	

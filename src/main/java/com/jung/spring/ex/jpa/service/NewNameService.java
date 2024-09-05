@@ -43,7 +43,7 @@ public class NewNameService {
 		
 		// NewName newName = optionalNewName.orElse(new NewName()); // null이면 어떤 값을 받겠다는 걸 의미하는 메소드 (null이면 new NewName() 이걸 리턴한다는거)
 		
-		NewName newName = optionalNewName.orElse(null);
+		NewName newName = optionalNewName.orElse(null);	// 즉, 인자이거나 그렇지 않으면 null로 나와라 즉, 조회된 값은 null이 아니기 때문에 변수에 저장된다.
 		
 		newName = newName.toBuilder().dreamJob(dreamJob).build(); // 수정하기위함
 		
